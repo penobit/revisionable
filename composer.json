@@ -1,0 +1,52 @@
+{
+  "name": "penobit/revisionable",
+  "license": "MIT",
+  "description": "Keep a revision history for your models without thinking, created as a package for use with Laravel",
+  "keywords": [
+    "model",
+    "laravel",
+    "ardent",
+    "revision",
+    "audit",
+    "history"
+  ],
+  "homepage": "http://github.com/penobit/revisionable",
+  "authors": [
+    {
+      "name": "R8 Rasoulzadeh",
+      "email": "info@penobit.com"
+    }
+  ],
+  "support": {
+    "issues": "https://github.com/penobit/revisionable/issues",
+    "source": "https://github.com/penobit/revisionable"
+  },
+  "require": {
+    "php": ">=7.3.0",
+    "illuminate/support": "~4.0|~5.0|~5.1|^6.0|^7.0|^8.0|^9.0|^10.0|^11.0",
+    "laravel/framework": "~5.4|^6.0|^7.0|^8.0|^9.0|^10.0|^11.0"
+  },
+  "autoload": {
+    "classmap": [
+      "src/migrations"
+    ],
+    "psr-4": {
+      "Penobit\\Revisionable\\": "src"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Penobit\\Revisionable\\Tests\\": "tests/"
+    }
+  },
+  "require-dev": {
+    "orchestra/testbench": "~3.0|^8.0"
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "Penobit\\Revisionable\\ServiceProvider"
+      ]
+    }
+  }
+}
