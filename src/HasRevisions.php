@@ -95,7 +95,7 @@ trait HasRevisions {
      * @param int $limit
      * @param string $order
      */
-    public static function classRevisionHistory($limit = 100, $order = 'desc') {
+    public static function classrevisions($limit = 100, $order = 'desc') {
         $model = Revisionable::newModel();
 
         return $model->where('revisionable_type', get_called_class())
@@ -155,7 +155,7 @@ trait HasRevisions {
      * Called after a model is successfully saved.
      */
     public function postSave() {
-        if (isset($this->historyLimit) && $this->revisionHistory()->count() >= $this->historyLimit) {
+        if (isset($this->historyLimit) && $this->revisions()->count() >= $this->historyLimit) {
             $LimitReached = true;
         } else {
             $LimitReached = false;
@@ -191,7 +191,7 @@ trait HasRevisions {
 
             if (count($revisions) > 0) {
                 if ($LimitReached && $RevisionCleanup) {
-                    $toDelete = $this->revisionHistory()->orderBy('id', 'asc')->limit(count($revisions))->get();
+                    $toDelete = $this->revisions()->orderBy('id', 'asc')->limit(count($revisions))->get();
                     foreach ($toDelete as $delete) {
                         $delete->delete();
                     }
