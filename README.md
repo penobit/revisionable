@@ -2,6 +2,8 @@
 [![Downloads](https://img.shields.io/packagist/dt/penobit/revisionable.svg?style=flat-square)](https://packagist.org/packages/penobit/revisionable)
 [![License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](https://tldrlegal.com/license/mit-license) -->
 
+## Based on [VentureCraft/Revisionable](https://github.com/VentureCraft/revisionable)
+
 Wouldn't it be nice to have a revision history for any model in your project, without having to do any work for it. By simply adding the `HasRevisions` Trait to your model, you can instantly have just that, and be able to display a history similar to this:
 
 - Chris changed title from 'Something' to 'Something else'
@@ -323,11 +325,11 @@ isEmpty:Nothing|%s
 
 ## Load revision history
 
-To load the revision history for a given model, simply call the `revisionHistory` method on that model, e.g.,
+To load the revision history for a given model, simply call the `revisions` method on that model, e.g.,
 
 ```php
 $article = Article::find($id);
-$history = $article->revisionHistory;
+$history = $article->revisions;
 ```
 
 <a name="display"></a>
@@ -341,7 +343,7 @@ To help with this, there's a few helper methods to display more insightful infor
 The above would be the result from this:
 
 ```php
-@foreach($account->revisionHistory as $history )
+@foreach($account->revisions as $history )
     <li>{{ $history->user()->first_name }} changed {{ $history->fieldName() }} from {{ $history->oldValue() }} to {{ $history->newValue() }}</li>
 @endforeach
 ```
@@ -349,7 +351,7 @@ The above would be the result from this:
 If you have enabled revisions of creations as well you can display it like this:
 
 ```php
-@foreach($resource->revisionHistory as $history)
+@foreach($resource->revisions as $history)
   @if($history->key == 'created_at' && !$history->old_value)
     <li>{{ $history->user()->first_name }} created this resource at {{ $history->newValue() }}</li>
   @else
